@@ -15,7 +15,3 @@ pip install -e .
 
 python run.py
 ```
-
-## Secrets management
-
-Secrets will be managed through git-crypt.
