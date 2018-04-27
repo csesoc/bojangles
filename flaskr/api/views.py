@@ -1,5 +1,4 @@
 from flask import abort, jsonify, current_app
-import re
 import json
 from . import app
 
@@ -10,13 +9,15 @@ in <sem> semester (X1|S1|S2)
 """
 @app.route('/specialisation/<spec>/<sem>')
 def specialisation(spec, sem):
-    sem = sem.upper() # accept lower case request
+    sem = sem.upper()  # accept lower case request
 
-    db_file = app.root_path + '/specialisation/db.json'
+    db_file = open(app.root_path + '/specialisation/db.json', 'r')
     # Try to read the json from the db file, fail gracefully and log an error
     try:
-        db = json.load(open(db_file, 'r'))
-    except (JSONDecodeError, FileNotFoundError) as err:
+        db = json.load(db_file)
+        db_file.close()
+    except (json.JSONDecodeError, FileNotFoundError) as err:
+        db_file.close()
         current_app.logger.error(
             'Api endpoint [specialisation/%s/%s] failed when loading json from %s' % (spec, sem, db_file),
             err
@@ -24,6 +25,12 @@ def specialisation(spec, sem):
         abort(500)
 
     try:
+        # todo: hesitant: Optimize this if scalability is required
+        #       As it stands there are around 354 entries in the list, which we are searching through the entirety of
+        #       as 354 is small, this is not really an issue, but we could easily optimize it by quitting as soon as
+        #       we find a match, or we could just use a binary search (as the list is sorted by specialisation
+        #       alphabetically)
+
         # We return next as the format guarantees there will only be one specialisation per session
         return jsonify(next(
             filter(lambda rec: rec['specialisation'] == spec and rec['session'] == sem, db)
