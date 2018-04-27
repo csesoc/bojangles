@@ -17,7 +17,7 @@ def register_blueprints(app):
     app.register_blueprint(bojangles_bp)
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='/static')
 
     # Get our environment and fail fast if we don't find one
 
@@ -27,8 +27,9 @@ def create_app():
 
     try:
         app.config.from_object(__name__+ '.{0}'.format(ENV))
-    except:
-        print('lol something broke')
+    except Exception as e:
+        # TODO: Better error handling than this
+        raise e
 
     # Figure out how to do this better later
     # I.e. have this in the config class and not _always_ read it in regardless of environment

@@ -1,4 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-home
+<div id="app" class="mt-5">
+    {% raw %}
+    {{ message }}
+    {% endraw %} 
+</div>
+{% endblock %} 
+
+{% block scripts %}
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+</script>
 {% endblock %} 
