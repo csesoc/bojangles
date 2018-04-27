@@ -7,7 +7,9 @@ def register_models(app):
 
 def register_blueprints(app):
     from .bojangles import app as bojangles_bp
+    from .api import app as api_bp
     app.register_blueprint(bojangles_bp)
+    app.register_blueprint(api_bp, url_prefix='/api')
 
 
 def create_app(config):
