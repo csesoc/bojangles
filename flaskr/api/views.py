@@ -16,10 +16,10 @@ def specialisation(spec, sem):
     # Try to read the json from the db file, fail gracefully and log an error
     try:
         db = json.load(open(db_file, 'r'))
-    except (JSONDecodeError, FileNotFoundError) as err:
+    except (json.JSONDecodeError, OSError) as err:
         current_app.logger.error(
-            'Api endpoint [specialisation/%s/%s] failed when loading json from %s' % (spec, sem, db_file),
-            err
+            'API endpoint [/api/specialisation/%s/%s] failed when loading json from:\n%s\n%s',
+            spec, sem, db_file, err
         )
         abort(500)
 
