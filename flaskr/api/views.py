@@ -11,16 +11,15 @@ in <sem> semester (X1|S1|S2)
 def specialisation(spec, sem):
     sem = sem.upper()  # accept lower case request
 
-    db_file = open(app.root_path + '/specialisation/db.json', 'r')
+    db_file = app.root_path + '/specialisation/db.json'
     # Try to read the json from the db file, fail gracefully and log an error
     try:
-        db = json.load(db_file)
-        db_file.close()
-    except (json.JSONDecodeError, FileNotFoundError) as err:
+        db = json.load(open(db_file, 'r'))
+    except (json.JSONDecodeError, OSError) as err:
         db_file.close()
         current_app.logger.error(
-            'Api endpoint [specialisation/%s/%s] failed when loading json from %s' % (spec, sem, db_file),
-            err
+            'API endpoint [/api/specialisation/%s/%s] failed when loading json from:\n%s\n%s',
+            spec, sem, db_file, err
         )
         abort(500)
 
