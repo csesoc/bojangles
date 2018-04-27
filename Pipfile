@@ -1,6 +1,15 @@
 [[source]]
+
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
+
 [packages]
-flask = "*"
+
+Flask = "==0.12.1"
+click = "==6.7"
+itsdangerous = "==0.24"
+"Jinja2" = "==2.9.6"
+MarkupSafe = "==1.0"
+pyparsing = "==2.2.0"
+Werkzeug = "==0.12.1"

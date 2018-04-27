@@ -6,14 +6,20 @@ We will be using Docker eventually to automate this process, and to reduce envir
 
 Note: this assumes virtualenv has been enabled, and python3.6 (preferably) is available.
 
-```shell
-virtualenv env --python=`which python3`
-. env/bin/activate
+```sh
+pipenv python run.py
+```
 
-pip install -r requirements.txt
-pip install -e .
+### Installing a dependency
 
-python run.py
+```sh
+pipenv install my-cool-dependency
+```
+
+### Entering the virtual environment
+
+```sh
+pipenv --shell
 ```
 
 ## Secrets management
