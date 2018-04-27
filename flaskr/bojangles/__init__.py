@@ -1,7 +1,7 @@
 from flask import Blueprint
 
 app = Blueprint(
-    'basic',
+    'bojangles',
     __name__,
     template_folder='templates',
     static_folder='static')
