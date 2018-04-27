@@ -16,6 +16,12 @@ pipenv python run.py
 pipenv install my-cool-dependency
 ```
 
+### Entering the virtual environment
+
+```sh
+pipenv --shell
+```
+
 ## Secrets management
 
 Secrets will be managed through git-crypt.
