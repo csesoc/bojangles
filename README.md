@@ -21,7 +21,3 @@ pipenv install my-cool-dependency
 ```sh
 pipenv --shell
 ```
-
-## Secrets management
-
-Secrets will be managed through git-crypt.
