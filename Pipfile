@@ -6,10 +6,11 @@ verify_ssl = true
 
 [packages]
 
-Flask = "==0.12.1"
+flask = "==0.12.1"
 click = "==6.7"
 itsdangerous = "==0.24"
-"Jinja2" = "==2.9.6"
-MarkupSafe = "==1.0"
+"jinja2" = "==2.9.6"
+markupsafe = "==1.0"
 pyparsing = "==2.2.0"
-Werkzeug = "==0.12.1"
+werkzeug = "==0.12.1"
+gunicorn = "*"
