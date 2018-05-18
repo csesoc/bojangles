@@ -5,12 +5,13 @@ class Config(object):
     DEBUG = False
 
 
-class Development(object):
+class Development(Config):
     DEBUG = True
     SECRET_KEY = 'development-only'
+    CLASSUTIL_PATH = 'specialisation/db.json'
 
 
-class Production(object):
+class Production(Config):
     DEBUG = False
 
     def __init__(self):

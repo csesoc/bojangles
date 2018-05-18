@@ -11,16 +11,8 @@ in <sem> semester (X1|S1|S2)
 def specialisation(spec, sem):
     sem = sem.upper()  # accept lower case request
 
-    db_file = app.root_path + '/specialisation/db.json'
-    # Try to read the json from the db file, fail gracefully and log an error
-    try:
-        db = json.load(open(db_file, 'r'))
-    except (json.JSONDecodeError, OSError) as err:
-        current_app.logger.error(
-            'API endpoint [/api/specialisation/%s/%s] failed when loading json from:\n%s\n%s',
-            spec, sem, db_file, err
-        )
-        abort(500)
+    db_file = "%s/%s" % (app.root_path, current_app.config['CLASSUTIL_PATH'])
+    db = json.load(open(db_file, 'r'))
 
     try:
         # todo: hesitant: Optimize this if scalability is required
@@ -31,7 +23,7 @@ def specialisation(spec, sem):
 
         # We return next as the format guarantees there will only be one specialisation per session
         return jsonify(next(
-            filter(lambda rec: rec['specialisation'] == spec and rec['session'] == sem, db)
+            (x for x in db if x['specialisation'] == spec and x['session'] == sem)
         ))
     except StopIteration:
         # In the case of a empty return from filter, either the specialisation or session is invalid
