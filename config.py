@@ -8,7 +8,7 @@ class Config(object):
 class Development(Config):
     DEBUG = True
     SECRET_KEY = 'development-only'
-    CLASSUTIL_PATH = 'specialisation/db.json'
+    CLASSUTIL_PATH = 'api/specialisation/db.json'
 
 
 class Production(Config):

@@ -11,7 +11,7 @@ in <sem> semester (X1|S1|S2)
 def specialisation(spec, sem):
     sem = sem.upper()  # accept lower case request
 
-    db_file = "%s/%s" % (app.root_path, current_app.config['CLASSUTIL_PATH'])
+    db_file = "%s/%s" % (current_app.root_path, current_app.config['CLASSUTIL_PATH'])
     db = json.load(open(db_file, 'r'))
 
     try:
