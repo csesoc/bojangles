@@ -1,0 +1,63 @@
+body {
+	/*image source: https://www.freepik.com/free-photos-vectors/background*/
+	background-image: url(img/footer_lodyas.png);
+	background-repeat: repeat;
+}
+
+.sidebar_container {
+    background-color: #666;
+    margin-left: 20px;
+    margin-right: 10px;
+    padding: 15px;
+}
+
+.timetable_container {
+    background-color: #666;
+    padding: 15px;
+}
+
+.current_sem {
+    height: 40px;
+    width: 75%;
+    float: left;
+    padding-left: 10px;
+    color: #CCC;
+}
+
+.help_button {
+    background-color: #CCC;
+    float: right;
+    width: 60px;
+    height: 30px;
+    font-size: 10pt;
+    color: #666;
+    text-transform: none;
+    padding: 4px 0;
+}
+
+.rm_button {
+    float: right;
+    height: 40px;
+    padding: 5px 20px;
+}
+
+.panel-body {
+    margin-top: 40px;
+    background-color: black;
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: black;
+
+}
+
+a:hover {
+    color: #3399FF;
+    text-decoration: none;
+}
