@@ -1,4 +1,4 @@
-
+// reordering sort preferences
 var source;
 
 function isbefore(a, b) {
@@ -25,4 +25,27 @@ function dragstart(e) {
     source = e.target;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/plain',null)
+}
+
+
+// adding and removing courses
+function addCourse(){
+    // get class & info then:
+    var courseList = document.getElementById("AllChosenCourses");
+    
+}
+
+// removing course
+
+function removeCourse(btn){
+    console.log("button pressed");
+    (((btn.parentNode).parentNode).parentNode).removeChild((btn.parentNode).parentNode);
+}
+
+removeButtons = document.querySelectorAll('rmButton');
+console.log(removeButtons.length);
+
+for (var i = 0; i < removeButtons.length; i ++) {
+    console.log("hi");
+    removeButtons[i].addEventListener('click', function() {removeCourse(this)}, false);
 }

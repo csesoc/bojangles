@@ -1,19 +1,68 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+html *
+{
+    /*font-family: 'Roboto', sans-serif;*/
+}
+
 body {
-	/*image source: https://www.freepik.com/free-photos-vectors/background*/
-	background-image: url(img/footer_lodyas.png);
-	background-repeat: repeat;
+    /*image source: https://www.freepik.com/free-photos-vectors/background*/
+    background-image: url(img/footer_lodyas.png);
+    background-repeat: repeat;
 }
 
 .sidebar_container {
     background-color: #666;
-    margin-left: 20px;
-    margin-right: 10px;
-    padding: 15px;
+    padding: 20px;
+    padding-bottom: 60px;
+    margin-top: 40px;
+}
+
+.search_box {
+    padding-bottom: 25px;
+}
+
+.search_btn {
+    height: 30px;
+    padding: 3px;
+    float: right;
+    width: 14%;
+}
+
+#AllChosenCourses {
+    list-style-type: none;
+}
+
+.CourseBox {
+    padding-bottom: 10px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+.rmButton {
+    height: 40px;
+    padding: 5px 20px;
+    float: right;
+    margin-top: -60px;
+}
+
+.card-body {
+    height: 80px;
+}
+
+.clashHour {
+    float: right;
+    margin-top: -25px;
+    margin-bottom: -20px;
+    display: inline-block;
+    width: 150px;
 }
 
 .timetable_container {
     background-color: #666;
     padding: 15px;
+    margin-top: 40px;
 }
 
 .current_sem {
@@ -35,12 +84,6 @@ body {
     padding: 4px 0;
 }
 
-.rm_button {
-    float: right;
-    height: 40px;
-    padding: 5px 20px;
-}
-
 .panel-body {
     margin-top: 40px;
     background-color: black;
@@ -48,13 +91,11 @@ body {
 
 .button_container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 20px;
 }
 
 a {
     color: black;
-
 }
 
 a:hover {
