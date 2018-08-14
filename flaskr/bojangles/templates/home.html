@@ -2,11 +2,7 @@
 {% block content %}
 <!-- <div class="random">hello<div> -->
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="js/Sortable.js"></script>
+    <meta charset="utf-8">
     <title>Bojangles Timetabler</title>
 
     <!-- timetable class colours -->
@@ -17,158 +13,143 @@
      teal        #33cccc
      yellow      #ffcc00
      -->
-
-    <!-- Theme colours -->
-    <!--
-     white       #FFF
-     black       #000
-     dark_grey   #333 !!!!!!
-     grey        #666 !!!!!!
-     light_grey  #CCC !!!!!!
-     pale-red    #FD6769 !!!!!!
-     blue        #3399ff !!!!!!
-     
-     !!!! may change
-     -->
 </head>
 
-
-<div class="row">
-    <div class="col-sm-12" style="background-color:#666;padding-top:20px;padding-left:100px;padding-bottom:20px;">
-            <h1 style="color:white">Bojangles Timetabler</h1>
-    </div>
-</div>
-<br>
-<br>
-
-
-<div class="row">
-    <!-- sidebar column -->
-    <div class="col-md-5">
-        <!-- <p style="padding-top: 15px; text-align: center">current semester</p> -->
-        <div id="app" class="sidebar_container">
-        {% raw %}
-            <!-- input classes -->
-            <div class="input-group" style="padding: 0 10px 25px 15px;">
-                <input type="text" class="form-control" 
-                   :placeholder="getPlaceholder"
-                   id="course-search"
-                   v-on:keypress="addCourse" :disabled="this.chosenCourseFull"/>
-                <div class="input-group-append">
-                    <button id="add-btn" class="btn btn-primary"
-                        v-on:click="addCourse"
-                        :disabled="this.chosenCourseFull">
-                        Add
-                    </button>
-                </div>
+<body>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="background-color:#666;padding-top:20px;padding-left:100px;padding-bottom:20px;">
+                <h1 style="color:white; font-weight:bold; font-size:30pt">Bojangles Timetabler</h1>
             </div>
+        </div>
 
-            <!-- show classes list -->
-            <div class="AllChosenCourse" v-for="(course, index) in chosenCourse" :key="course.code">
-                <div style="padding-left:15px; padding-right: 10px; padding-bottom: 5px">
-                    <div class="CourseBox" style="padding-bottom: 10px; background-color: white">
-                        <div class="card-body" style="height: 80px">
-                            <h4 class="card-title p_course_code">
-                                <a target="__blank" :href="getCoursePage(course.code)">
-                                    {{course.code}}
-                                </a>
-                            </h4>
-                            <p class="card-text p_course_name">{{course.desc}}</p>
-                            <button type="button" class="btn btn-danger" 
-                                v-on:click="deleteCourse(index)"
-                                style="float: right; margin-top: -60px; background-color: #f44336; color: white">
-                                Remove
+        <div class="row">
+            <!-- sidebar column -->
+            <div class="col-12 col-md-5">
+                
+                <div id="app" class="sidebar_container">
+                {% raw %}
+                    <!-- input classes -->
+                    <div class="input-group" style="padding: 0 10px 25px 15px;">
+                        <input style="width: 85%; height: 30px; padding-left: 10px;" type="text" class="form-control"
+                           :placeholder="getPlaceholder"
+                           id="course-search"
+                           v-on:keypress="addCourse" :disabled="this.chosenCourseFull"/>
+                        <div class="input-group-append">
+                            <button id="add-btn" class="btn btn-primary search_btn"
+                                v-on:click="addCourse"
+                                :disabled="this.chosenCourseFull">
+                                Add
                             </button>
                         </div>
                     </div>
+
+                    <!-- show classes list -->
+                    <ul class="AllChosenCourses list-group" v-for="(course, index) in chosenCourse" :key="course.code">
+                        <li class="CourseBox">
+                            <div class="card-body">
+                                <h4 class="card-title p_course_code">
+                                    <a target="__blank" :href="getCoursePage(course.code)">
+                                        {{course.code}}
+                                    </a>
+                                </h4>
+                                <p class="card-text p_course_name">{{course.desc}}</p>
+                                <button type="button" class="btn btn-danger"
+                                    v-on:click="deleteCourse(index)"
+                                    style="float: right; margin-top: -60px; background-color: #f44336; color: white">
+                                    Remove
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- sorting option -->
+                    <div style="margin: 20px 0px;">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)" data-id="random">
+                            Randomised
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)" data-id="sleep">
+                            Sleep in time
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)" data-id="afternoon">
+                            Afternoons free
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)" data-id="days">
+                            Least days
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" draggable="true" ondragenter="dragenter(event)" ondragstart="dragstart(event)" data-id="hours">
+                            Least hours
+                        </li>
+                    </ul>
+                    </div>
+                    <!-- full classes -->
+                    <div class="form-group" style="padding-left: 15px; diaplay: inline">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" checked="" data-com.agilebits.onepassword.user-edited="yes">
+                                <label class="custom-control-label" for="customCheck1" style="margin-top: -20">Include full classes</label>
+                        </div>
+
+                        <!-- clash hours -->
+                        <div class="clashHour" style="color: white; float: left; margin-top: 5px;">
+                            <select class="custom-select" style="float: right; width: 50px">
+                                <option selected="">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3">9</option>
+                            </select>
+                            <p>Clash Hours</p>
+                        </div>
+                    </div>
+
+                    <!-- Generate and Reset Buttons-->
+                    <div id="button_container" style="margin-top: 20px">
+                        <button type="button" class="btn btn-info" style="float: left;">Generate</button>
+                        <button type="button" class="btn btn-danger" style="float: right;">Reset all</button>
+                    </div>
+
+                </div>
+                {% endraw %}
+            </div>
+
+            <!-- timetable column -->
+            <div class="col-12 col-md-7" style="padding-bottom:30px;">
+                <!-- timetable area -->
+                <div class="timetable_container"> <!-- extends bootstrap theme container -->
+                    <div class="current_sem">
+                        <p>Current Viewable Semester: <b> 2018 Semester 2 </b></p>
+                    </div>
+                    <!-- Help button -->
+                    <button type="button" class="btn btn-secondary help_button">Help <img src="static/img/question_mark_PNG99.png" alt="?" style="width:15px;height:15px;"></button>
+
+                    <!-- actual timetable -->
+                    <!-- original timetable start (from tdransfield)-->
+                    <!-- I have no idea how to resize this-->
+                    <div class="panel-body" id="bojangle-area">
+                        <br>
+                        <div class="canvas-container" style="position: relative; user-select: none; width: 688px; height: 895px;">
+                            <canvas id="timetable" data-toggle="tooltip" data-placement="top" title="" class="lower-canvas" width="1436" height="1867" style="position: absolute; left: 0px; top: 0px; user-select: none; width: 688px; height: 895px;" data-original-title="Drag and drop your classes"></canvas>
+                            <canvas class="upper-canvas " width="1436" height="1867" style="position: absolute; left: 0px; top: 0px; user-select: none; cursor: default; width: 688px; height: 895px;"></canvas>
+                        </div>
+                    </div>
+                     <!-- Original timetable end-->
+                     <div class="button_container" style="display: flex;">
+                        <button type="button" class="btn" style="float:left;">Prev</button>
+                        <button type="button" class="btn btn-info" style="margin: auto;">Save as image</button>
+                        <button type="button" class="btn" style="float:right;">Next</button>
+                    </div>
                 </div>
             </div>
-
-            <!-- sorting option -->
-            <div style="padding: 10px; padding-left: 15px; margin-bottom: 15px">
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Randomised
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Sleep in time
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Afternoons free
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Least days
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Least hours
-                </li>
-            </ul>
-            </div>
-            <!-- full classes -->
-            <div class="form-group" style="padding-left: 15px; diaplay: inline">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked="" data-com.agilebits.onepassword.user-edited="yes">
-                    <label class="custom-control-label" for="customCheck1" style="margin-top: -20">Include full classes</label>
-                </div>
-
-                <!-- clash hours -->
-                <div class="clashHour" style="float: right; padding-right: 10px; margin-top: -20px">
-                    <select class="custom-select">
-                        <option selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="3">9</option>
-                    </select>
-                    <p>Clash Hours</p>
-                </div>
-            </div>
-
-            <!-- Generate and Reset Buttons-->
-            <div id="button_container" style="margin-top: 50px">
-                <button type="button" class="btn btn-info" style="float: left; margin-left: 15px">Generate</button>
-                <button type="button" class="btn btn-danger" style="float: right; margin-right: 13px">Reset all</button>
-            </div>
-
         </div>
-        {% endraw %}
     </div>
-
-    <!-- timetable column -->
-    <div class="col-md-7" style="padding-bottom:30px;">
-        <!-- timetable area -->
-        <div class="timetable_container"> <!-- extends bootstrap theme container -->
-            <div class="current_sem">
-                <p>Current Viewable Semester: <b> 2018 Semester 2 </b></p>
-            </div>
-            <!-- Help button -->
-            <button type="button" class="btn btn-secondary help_button">Help <img src="/static/img/question_mark_PNG99.png" alt="?" style="width:15px;height:15px;"></button>
-
-            <!-- actual timetable -->
-            <!-- original timetable start (from tdransfield)-->
-            <!-- I have no idea how to resize this-->
-            <div class="panel-body" id="bojangle-area">
-                <br>
-                <div class="canvas-container" style="position: relative; user-select: none; width: 688px; height: 895px;">
-                    <canvas id="timetable" data-toggle="tooltip" data-placement="top" title="" class="lower-canvas" width="1436" height="1867" style="position: absolute; left: 0px; top: 0px; user-select: none; width: 688px; height: 895px;" data-original-title="Drag and drop your classes"></canvas>
-                    <canvas class="upper-canvas " width="1436" height="1867" style="position: absolute; left: 0px; top: 0px; user-select: none; cursor: default; width: 688px; height: 895px;"></canvas>
-                </div>
-            </div>
-             <!-- Original timetable end-->
-             <div class="button_container" style="margin-top:20px;">
-                <button type="button" class="btn" style="float:left;">Prev</button>
-                <button type="button" class="btn btn-info" style="margin: auto;">Save as image</button>
-                <button type="button" class="btn" style="float:right;">Next</button>
-            </div>
-        </div>
-    </div>
-</div>
+</body>
 
 
 {% endblock %}
 {% block scripts %}
-<script src="/static/jquery-3.3.1.min.js" charset="utf-8"></script>
-<script src="/static/jquery.autocomplete.min.js" charset="utf-8"></script>
+<script src="../static/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="../static/jquery.autocomplete.min.js" charset="utf-8"></script>
 <script charset="utf-8">
     var currentSem = 'S2';
 
