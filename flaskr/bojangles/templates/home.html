@@ -121,7 +121,7 @@
                         <p>Current Viewable Semester: <b> 2018 Semester 2 </b></p>
                     </div>
                     <!-- Help button -->
-                    <button type="button" class="btn btn-secondary help_button">Help <img src="static/img/question_mark_PNG99.png" alt="?" style="width:15px;height:15px;"></button>
+                    <button type="button" class="btn btn-secondary help_button" data-toggle="modal" data-target="#helpModal">Help <img src="static/img/question_mark_PNG99.png" alt="?" style="width:15px;height:15px;"></button>
 
                     <!-- actual timetable -->
                     <!-- original timetable start (from tdransfield)-->
@@ -139,6 +139,27 @@
                         <button type="button" class="btn btn-info" style="margin: auto;">Save as image</button>
                         <button type="button" class="btn" style="float:right;">Next</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <!-- Help Modal -->
+    <div class="modal">
+        <div id="helpModal" class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Bojangles Help</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Need to change this blah blah blah..... also add in an image to help</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
