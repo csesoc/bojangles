@@ -19,19 +19,14 @@ body {
     margin-top: 40px;
 }
 
-.search_box {
-    padding-bottom: 25px;
-}
-
 .search_btn {
-    height: 30px;
-    padding: 3px;
+    height: 41px;
+    padding-top: 10px;
     float: right;
-    width: 14%;
 }
 
-#AllChosenCourses {
-    list-style-type: none;
+.AllChosenCourses {
+    list-style: none;
 }
 
 .CourseBox {
