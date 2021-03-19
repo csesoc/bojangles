@@ -9,7 +9,7 @@ verify_ssl = true
 flask = "==0.12.1"
 click = "==6.7"
 itsdangerous = "==0.24"
-"jinja2" = "==2.9.6"
+"jinja2" = "==2.11.3"
 markupsafe = "==1.0"
 pyparsing = "==2.2.0"
 werkzeug = "==0.15.3"
