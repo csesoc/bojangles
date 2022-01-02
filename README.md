@@ -1,5 +1,7 @@
 # Bojangles
 
+NOTE - this project is now dead in favour of [Notangles](https://github.com/csesoc/notangles)
+
 ## Getting your environment setup
 
 We will be using Docker eventually to automate this process, and to reduce environment inconsistencies, but to get this setup properly on an external system:
